@@ -1,12 +1,12 @@
 "use client";
 
 import { useAccount, useDisconnect } from "wagmi";
-import { KyuzanWalletButton } from "./KyuzanWalletButton";
-import { SignMessage } from "./SignMessage";
+import { KyuzanWalletButton } from "@/components/KyuzanWalletButton";
+import { SignMessage } from "@/components/SignMessage";
+import { KomyX } from "@/components/KomyX";
 
 function App() {
   const account = useAccount();
-  const { disconnect } = useDisconnect();
 
   return (
     <div
@@ -24,6 +24,9 @@ function App() {
           <SignMessage />
         </div>
       )}
+      <div style={{ marginTop: "40px" }}>
+        <KomyX />
+      </div>
     </div>
   );
 }

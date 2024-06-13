@@ -57,9 +57,7 @@ export function SignMessage() {
         />
         2. Sign the message
       </StyledButton>
-      <div
-        style={{ textAlign: "center", marginTop: "5px", marginBottom: "20px" }}
-      >
+      <div style={{ textAlign: "center", marginTop: "5px" }}>
         Is valid:{" "}
         {valid !== undefined && (
           <span
