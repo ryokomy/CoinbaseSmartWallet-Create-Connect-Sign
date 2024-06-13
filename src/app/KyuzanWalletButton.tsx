@@ -1,56 +1,19 @@
 import React, { useCallback } from "react";
-import { useConnect, useAccount } from "wagmi";
-import styled from "styled-components";
+import { useConnect, useAccount, useDisconnect } from "wagmi";
 import kyuzanLogo from "../../public/kyuzan-logo.png";
 import Image from "next/image";
-
-const StyledButton = styled.button`
-  background: #28a745;
-  border: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px 10px 8px;
-  border-radius: 5px;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition:
-    background-color 0.3s,
-    transform 0.2s,
-    box-shadow 0.3s;
-
-  &:hover {
-    background-color: #34a853;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: translateY(-1px) scale(0.98);
-  }
-
-  &.inactive {
-    background-color: #cccccc;
-    cursor: not-allowed;
-    box-shadow: none;
-    &:hover {
-      background-color: #cccccc;
-      transform: none;
-    }
-  }
-`;
+import StyledButton from "@/styles/StyledButton";
 
 export function KyuzanWalletButton() {
   const { connectors, connect } = useConnect();
-  const { status } = useAccount();
+  const { status, address } = useAccount();
+  const { disconnect } = useDisconnect();
 
-  const createOrConnectWallet = useCallback(() => {
+  const createOrConnectCoinbaseSmartWallet = useCallback(() => {
     const coinbaseWalletConnector = connectors.find(
       (connector) => connector.id === "coinbaseWalletSDK"
     );
+
     if (coinbaseWalletConnector) {
       connect({ connector: coinbaseWalletConnector });
     }
@@ -59,18 +22,34 @@ export function KyuzanWalletButton() {
   const isConnected = status === "connected";
 
   return (
-    <StyledButton
-      onClick={createOrConnectWallet}
-      className={isConnected ? "inactive" : ""}
-    >
-      <Image
-        src={kyuzanLogo}
-        alt="Kyuzan Logo"
-        width={24}
-        height={24}
-        style={{ marginRight: "6px" }}
-      />
-      {isConnected ? "Wallet Connected" : "Create Wallet / Connect Wallet"}
-    </StyledButton>
+    <>
+      <StyledButton
+        onClick={createOrConnectCoinbaseSmartWallet}
+        className={isConnected ? "inactive" : ""}
+      >
+        <Image
+          src={kyuzanLogo}
+          alt="Kyuzan Logo"
+          width={24}
+          height={24}
+          style={{ marginRight: "6px" }}
+        />
+        {isConnected
+          ? "1. Wallet Connected"
+          : "1. Create Wallet / Connect Wallet"}
+      </StyledButton>
+      {status === "connected" && (
+        <>
+          <div style={{ marginTop: "5px" }}> {address}</div>
+          <button
+            type="button"
+            onClick={() => disconnect()}
+            style={{ marginTop: "5px" }}
+          >
+            Disconnect
+          </button>
+        </>
+      )}
+    </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useAccount, useDisconnect } from "wagmi";
 import { KyuzanWalletButton } from "./KyuzanWalletButton";
+import { SignMessage } from "./SignMessage";
 
 function App() {
   const account = useAccount();
@@ -19,16 +20,9 @@ function App() {
     >
       <KyuzanWalletButton />
       {account.status === "connected" && (
-        <>
-          <div style={{ marginTop: "20px" }}> {account.addresses[0]}</div>
-          <button
-            type="button"
-            onClick={() => disconnect()}
-            style={{ marginTop: "20px" }}
-          >
-            Disconnect
-          </button>
-        </>
+        <div style={{ marginTop: "40px" }}>
+          <SignMessage />
+        </div>
       )}
     </div>
   );
