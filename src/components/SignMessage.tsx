@@ -20,7 +20,7 @@ export function SignMessage() {
       chainId: account.chainId,
       uri: document.location.origin,
       version: "1",
-      statement: "Smart Wallet SIWE Example",
+      statement: "Coinbase Smart Wallet Sign Message Example",
       nonce: "12345678",
     });
   }, [account.address]);
@@ -55,7 +55,7 @@ export function SignMessage() {
           height={24}
           style={{ marginRight: "6px" }}
         />
-        2. Sign the message
+        Sign the message
       </StyledButton>
       <div style={{ textAlign: "center", marginTop: "5px" }}>
         Is valid:{" "}

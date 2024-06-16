@@ -11,13 +11,13 @@ import { abi, address } from "@/contracts/mintable-erc721";
 import { useState, useEffect } from "react";
 
 export function MintNFT() {
-  const account = useAccount();
+  const { address: userAddress } = useAccount();
 
   // indexes
   const [indexes, setIndexes] = useState<number[]>([]);
   const [tokenIds, setTokenIds] = useState<number[]>([]);
 
-  const { writeContract, isSuccess } = useWriteContract();
+  const { writeContract } = useWriteContract();
 
   const {
     data: dataBalance,
@@ -27,7 +27,7 @@ export function MintNFT() {
     abi,
     address,
     functionName: "balanceOf",
-    args: [account.address],
+    args: [userAddress],
   });
 
   const {
@@ -40,7 +40,7 @@ export function MintNFT() {
         abi,
         address,
         functionName: "tokenOfOwnerByIndex",
-        args: [account.address, i],
+        args: [userAddress, i],
       };
     }),
   });
@@ -79,7 +79,7 @@ export function MintNFT() {
               abi,
               address,
               functionName: "safeMint",
-              args: [account.address],
+              args: [userAddress],
             },
             {
               onSuccess: async () => {
@@ -98,7 +98,7 @@ export function MintNFT() {
         />
         2. Mint NFT
       </StyledButton>
-      <div style={{ marginRight: "20px" }}>
+      <div style={{ marginRight: "30px" }}>
         {tokenIds.length > 0 && (
           <ul>
             {tokenIds.map((tokenId) => (
@@ -108,7 +108,7 @@ export function MintNFT() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  tokenId #{tokenId} on OpenSea
+                  Your NFT (tokenId #{tokenId}) on OpenSea
                 </a>
               </li>
             ))}
