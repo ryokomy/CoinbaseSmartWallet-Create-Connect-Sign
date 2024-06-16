@@ -9,18 +9,18 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Coinbase Smart Wallet Create-Connect-Sign",
+  title: "Komy: Coinbase Smart Wallet",
   description:
     "Coinbase Smart Wallet Create-Connect-Sign created by Komy | Kyuzan",
   twitter: {
-    title: "Coinbase Smart Wallet Create-Connect-Sign",
+    title: "Komy: Coinbase Smart Wallet",
     description:
       "Coinbase Smart Wallet Create-Connect-Sign created by Komy | Kyuzan",
     images:
       "https://coinbase-smart-wallet-create-connect-sign.vercel.app/ogp.png",
   },
   openGraph: {
-    title: "Coinbase Smart Wallet Create-Connect-Sign",
+    title: "Komy: Coinbase Smart Wallet",
     description:
       "Coinbase Smart Wallet Create-Connect-Sign created by Komy | Kyuzan",
     images:
