@@ -11,7 +11,7 @@ import { abi, address } from "@/contracts/mintable-erc721";
 import { useState, useEffect } from "react";
 
 export function MintNFT() {
-  const { address: userAddress } = useAccount();
+  const { address: userAddress, isConnected } = useAccount();
 
   // indexes
   const [indexes, setIndexes] = useState<number[]>([]);
@@ -22,7 +22,7 @@ export function MintNFT() {
   const {
     data: dataBalance,
     refetch: refetchBalance,
-    isFetchedAfterMount: isFetchedAfterMountBlance,
+    isFetched: isFetchedBalance,
   } = useReadContract({
     abi,
     address,
@@ -33,7 +33,7 @@ export function MintNFT() {
   const {
     data: dataTokenIds,
     refetch: refetchTokenIds,
-    isFetchedAfterMount: isFetchedAfterMountTokenIds,
+    isFetched: isFetchedTokenIds,
   } = useReadContracts({
     contracts: indexes.map((i) => {
       return {
@@ -46,20 +46,22 @@ export function MintNFT() {
   });
 
   useEffect(() => {
-    if (isFetchedAfterMountBlance) {
+    if (isFetchedBalance) {
+      console.log("dataBalance");
+      console.log(dataBalance);
       const _balance = Number(dataBalance);
       setIndexes(Array.from({ length: _balance }, (_, i) => i));
     }
-  }, [dataBalance]);
+  }, [dataBalance, isConnected]);
 
   useEffect(() => {
-    if (isFetchedAfterMountTokenIds) {
+    if (isFetchedTokenIds) {
       refetchTokenIds();
     }
-  }, [indexes]);
+  }, [indexes, refetchTokenIds]);
 
   useEffect(() => {
-    if (isFetchedAfterMountTokenIds) {
+    if (isFetchedTokenIds) {
       setTokenIds(
         (dataTokenIds as unknown[]).map((dataTokenId) =>
           Number((dataTokenId as { result: bigint }).result)
