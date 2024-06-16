@@ -12,6 +12,20 @@ export const metadata: Metadata = {
   title: "Coinbase Smart Wallet Create-Connect-Sign",
   description:
     "Coinbase Smart Wallet Create-Connect-Sign created by Komy | Kyuzan",
+  twitter: {
+    title: "Coinbase Smart Wallet Create-Connect-Sign",
+    description:
+      "Coinbase Smart Wallet Create-Connect-Sign created by Komy | Kyuzan",
+    images:
+      "https://coinbase-smart-wallet-create-connect-sign.vercel.app/ogp.png",
+  },
+  openGraph: {
+    title: "Coinbase Smart Wallet Create-Connect-Sign",
+    description:
+      "Coinbase Smart Wallet Create-Connect-Sign created by Komy | Kyuzan",
+    images:
+      "https://coinbase-smart-wallet-create-connect-sign.vercel.app/ogp.png",
+  },
 };
 
 export default function RootLayout(props: { children: ReactNode }) {
