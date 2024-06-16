@@ -1,12 +1,15 @@
-import Link from "next/link";
-
 export function KomyX() {
   return (
     <div style={{ textAlign: "center" }}>
       created by
-      <Link href="https://x.com/ryoheikomy">
-        <span style={{ marginLeft: "8px" }}>Komy | Kyuzan</span>
-      </Link>
+      <a
+        href="https://x.com/ryoheikomy"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ marginLeft: "8px" }}
+      >
+        Komy | Kyuzan
+      </a>
     </div>
   );
 }

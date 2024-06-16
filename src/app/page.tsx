@@ -4,7 +4,7 @@ import { useAccount, useDisconnect } from "wagmi";
 import { KyuzanWalletButton } from "@/components/KyuzanWalletButton";
 import { SignMessage } from "@/components/SignMessage";
 import { KomyX } from "@/components/KomyX";
-import { ClaimNFT } from "@/components/ClaimNFT";
+import { MintNFT } from "@/components/MintNFT";
 
 function App() {
   const account = useAccount();
@@ -23,11 +23,11 @@ function App() {
       {account.status === "connected" && (
         <>
           <div style={{ marginTop: "40px" }}>
+            <MintNFT />
+          </div>
+          {/* <div style={{ marginTop: "40px" }}>
             <SignMessage />
-          </div>
-          <div style={{ marginTop: "40px" }}>
-            <ClaimNFT />
-          </div>
+          </div> */}
         </>
       )}
       <div style={{ marginTop: "40px" }}>
